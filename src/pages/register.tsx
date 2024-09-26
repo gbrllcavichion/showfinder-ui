@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import axios from 'axios';
+import styles from './form.module.css';
 
-export default function Register() {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+const Register: React.FC = () => {
+  const [email, setEmail] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8080/api/users/register', {
@@ -26,16 +27,16 @@ export default function Register() {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '0 auto', padding: '20px' }}>
-      <h1 style={{ textAlign: 'center' }}>Cadastro de Usuário</h1>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Cadastro de Usuário</h1>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <label>Email:</label>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          style={{ marginBottom: '10px', padding: '8px' }}
+          className={styles.input}
         />
         <label>Usuário:</label>
         <input
@@ -43,7 +44,7 @@ export default function Register() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          style={{ marginBottom: '10px', padding: '8px' }}
+          className={styles.input}
         />
         <label>Senha:</label>
         <input
@@ -51,13 +52,15 @@ export default function Register() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          style={{ marginBottom: '20px', padding: '8px' }}
+          className={styles.input}
         />
-        <button type="submit" style={{ padding: '10px', backgroundColor: '#0070f3', color: '#fff', border: 'none', borderRadius: '4px' }}>
+        <button type="submit" className={styles.button}>
           Cadastrar
         </button>
       </form>
-      {message && <p style={{ textAlign: 'center', marginTop: '20px', color: 'red' }}>{message}</p>}
+      {message && <p className={styles.message}>{message}</p>}
     </div>
   );
-}
+};
+
+export default Register;
