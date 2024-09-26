@@ -1,0 +1,24 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .concertList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .concertItem {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+  }
+  
